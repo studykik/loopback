@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2015,2016. All Rights Reserved.
+// Copyright IBM Corp. 2015,2018. All Rights Reserved.
 // Node module: loopback
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -68,6 +68,38 @@ describe('PersistedModel.createChangeStream()', function() {
           newScore.remove();
         });
       });
+    });
+
+    it('should apply "where" and "fields" to create events', function() {
+      const Score = this.Score;
+      const data = [
+        {team: 'baz', player: 'baz', value: 1},
+        {team: 'bar', player: 'baz', value: 2},
+        {team: 'foo', player: 'bar', value: 3},
+      ];
+      const options = {where: {player: 'bar'}, fields: ['team', 'value']};
+      const changes = [];
+      let changeStream;
+
+      return Score.createChangeStream(options)
+        .then(stream => {
+          changeStream = stream;
+          changeStream.on('data', function(change) {
+            changes.push(change);
+          });
+
+          return Score.create(data);
+        })
+        .then(scores => {
+          changeStream.destroy();
+
+          expect(changes).to.have.length(1);
+          expect(changes[0]).to.have.property('type', 'create');
+          expect(changes[0].data).to.eql({
+            'team': 'foo',
+            value: 3,
+          });
+        });
     });
 
     it('should not emit changes after destroy', function(done) {

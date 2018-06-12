@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2014,2016. All Rights Reserved.
+// Copyright IBM Corp. 2014,2018. All Rights Reserved.
 // Node module: loopback
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -242,6 +242,7 @@ module.exports = function(Role) {
 
     // Resolve isOwner false if userId is missing
     if (!userId) {
+      debug('isOwner(): no user id was set, returning false');
       process.nextTick(function() {
         callback(null, false);
       });
@@ -256,6 +257,9 @@ module.exports = function(Role) {
     var isPrincipalTypeValid =
       (!isMultipleUsers && principalType === Principal.USER) ||
       (isMultipleUsers && principalType !== Principal.USER);
+
+    debug('isOwner(): isMultipleUsers?', isMultipleUsers,
+      'isPrincipalTypeValid?', isPrincipalTypeValid);
 
     // Resolve isOwner false if principalType is invalid
     if (!isPrincipalTypeValid) {
@@ -273,8 +277,9 @@ module.exports = function(Role) {
         process.nextTick(function() {
           callback(null, matches(modelId, userId));
         });
+        return callback.promise;
       }
-      return callback.promise;
+      // otherwise continue with the regular owner resolution
     }
 
     modelClass.findById(modelId, options, function(err, inst) {
@@ -539,10 +544,10 @@ module.exports = function(Role) {
         if (principalType && principalId) {
           roleMappingModel.findOne({where: {roleId: roleId,
             principalType: principalType, principalId: principalId}},
-            function(err, result) {
-              debug('Role mapping found: %j', result);
-              done(!err && result); // The only arg is the result
-            });
+          function(err, result) {
+            debug('Role mapping found: %j', result);
+            done(!err && result); // The only arg is the result
+          });
         } else {
           process.nextTick(function() {
             done(false);

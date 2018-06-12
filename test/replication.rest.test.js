@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2015,2016. All Rights Reserved.
+// Copyright IBM Corp. 2015,2018. All Rights Reserved.
 // Node module: loopback
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -72,8 +72,8 @@ describe('Replication over REST', function() {
 
       it('allows PETER to WRITE', function(done) {
         createCar()
-        .set('Authorization', peterToken)
-        .expect(200, done);
+          .set('Authorization', peterToken)
+          .expect(200, done);
       });
 
       function listCars() {
@@ -597,7 +597,7 @@ describe('Replication over REST', function() {
       function(next) {
         ServerCar.create(
           [
-            {id: 'Ford-Mustang',  maker: 'Ford', model: 'Mustang'},
+            {id: 'Ford-Mustang', maker: 'Ford', model: 'Mustang'},
             {id: 'Audi-R8', maker: 'Audi', model: 'R8'},
           ],
           function(err, cars) {

@@ -1,3 +1,83 @@
+2018-06-12, Version 3.20.0
+==========================
+
+ * Update strong-globalize to 4.x (Miroslav Bajtoš)
+
+ * Update nodemailer to v4.x (Dimitris)
+
+ * Drop support for Node.js 4.x (Miroslav Bajtoš)
+
+
+2018-06-04, Version 3.19.3
+==========================
+
+ * Provide link to CODEOWNERS (Aditya Agarwal)
+
+ * fix bug in User.verify when confirm is disabled (wolrajhti)
+
+ * Enable Node.js 10.x on Travis CI (Miroslav Bajtoš)
+
+
+2018-05-29, Version 3.19.2
+==========================
+
+ * Add check for undefined user email in setter (Kevin Scroggins)
+
+
+2018-05-21, Version 3.19.1
+==========================
+
+ * Fix isOwner() bug in multiple-principal setup (Miroslav Bajtoš)
+
+
+2018-04-17, Version 3.19.0
+==========================
+
+ * feat: remove all references to a Model (Miroslav Bajtoš)
+
+
+2018-03-22, Version 3.18.3
+==========================
+
+ * Remove forgotten debugger statement (Miroslav Bajtoš)
+
+ * Fix role check in apps with multiple user models (Miroslav Bajtoš)
+
+ * Fix formatting issues reported by recent eslint (Miroslav Bajtoš)
+
+ * CODEOWNERS: add nitro404 (Miroslav Bajtoš)
+
+ * test: add missing "return" in a promise-style test (Miroslav Bajtoš)
+
+
+2018-02-08, Version 3.18.2
+==========================
+
+ * model: fix infinite loop on nestRemoting (Kevin Delisle)
+
+ * Use statusCode prop for user errors (Zak Barbuto)
+
+
+2018-01-31, Version 3.18.1
+==========================
+
+ * update: juggler to version including security fix. (Taranveer Virk)
+
+
+2018-01-29, Version 3.18.0
+==========================
+
+ * fix: preserve datasource name (Kevin Scroggins)
+
+ * Update Copyright Years (Justin Ross)
+
+ * Support options.filter in createChangeStream (Edward Choh)
+
+ * fixup! add top-level dep on eslint-plugin-mocha (Miroslav Bajtoš)
+
+ * Update eslint and eslint-config to latest (Miroslav Bajtoš)
+
+
 2017-12-12, Version 3.17.1
 ==========================
 

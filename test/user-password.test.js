@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2013,2017. All Rights Reserved.
+// Copyright IBM Corp. 2017,2018. All Rights Reserved.
 // Node module: loopback
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -207,7 +207,7 @@ describe('User.password', () => {
       User.resetPassword({email: credentials.email}),
       waitForEvent(User, 'resetPasswordRequest'),
     ])
-    .spread((reset, info) => resetToken = info.accessToken);
+      .spread((reset, info) => resetToken = info.accessToken);
   }
 
   function changeName(token) {

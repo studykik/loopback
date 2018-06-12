@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2013,2016. All Rights Reserved.
+// Copyright IBM Corp. 2017,2018. All Rights Reserved.
 // Node module: loopback
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -31,11 +31,11 @@ describe('role-mapping model', function() {
       models.Application.create({name: 'anApp'}),
       models.Role.create({name: 'aRole'}),
     ])
-    .spread(function(u, a, r) {
-      oneUser = u;
-      anApp = a;
-      aRole = r;
-    });
+      .spread(function(u, a, r) {
+        oneUser = u;
+        anApp = a;
+        aRole = r;
+      });
 
     // helper
     function setupModel(modelName) {
